@@ -1,0 +1,54 @@
+﻿<Page x:Class="Reciepe.IngridientsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Reciepe"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="IngridientsPage">
+
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Label Content="Поиск: " FontSize="18" VerticalAlignment="Center" />
+            <TextBox Width="200" x:Name="search" TextChanged="searching"/>
+        </StackPanel>
+        <ListView Grid.Row="1" Grid.Column="1"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ingridientsList">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="#F8F8FF" Margin="0 0 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition Width="126" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="7" Grid.Column="0">
+                            <TextBlock FontSize="12" TextWrapping="Wrap" >
+                        <Run Text="{Binding IngridientId}"/>
+                        <LineBreak />
+                        <Run Text="{Binding Name}"/> 
+                        <LineBreak />
+                        <ItemsControl ItemsSource="{Binding ReceiptIngridients}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                <Run Text="{Binding ReceiptNavigation.Name}" />
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2"   VerticalAlignment="Top">
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+    </DockPanel>
+</Page>
